@@ -16,6 +16,7 @@ private:
     // int size;
 
 public:
+    AVLTree(); // Constructor
     bool AVLTree::insert(int key, string value);
     bool AVLTree::find(int key, string &value);
     vector<string> AVLTree::findRange(int lowkey, int highkey);
