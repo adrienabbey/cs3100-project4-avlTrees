@@ -11,13 +11,17 @@ class AVLNode
 private:
     int key;
     string value;
+
     AVLNode *leftChild;
     AVLNode *rightChild;
+
     // AVLNode *parent;
     // int height;
     // int balance;
 
 public:
+    AVLNode(int key, string value); // Constructor
+
     int AVLNode::getKey();
     int AVLNode::setKey(int value);
 
