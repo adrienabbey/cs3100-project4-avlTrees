@@ -4,12 +4,17 @@
 
 #include <string>
 #include <vector>
+#include "AVLNode.h"
 
 using namespace std;
 
 class AVLTree
 {
 private:
+    AVLNode *root;
+    // int height;
+    // int size;
+
 public:
     bool AVLTree::insert(int key, string value);
     bool AVLTree::find(int key, string &value);
