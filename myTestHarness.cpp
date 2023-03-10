@@ -3,10 +3,14 @@
 // Visual Studio Code Server, Ubuntu 22.04, g++/gdb
 
 #include <iostream>
+#include "AVLTree.h"
 
 using namespace std;
 
 int main()
 {
+    // Create an empty AVLTree:
+    AVLTree newTree;
+    
     return 0;
 }
