@@ -1,0 +1,9 @@
+{
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/home/sevriem/projects/cs3100-project4-avlTrees",
+            "binaryPath": "/home/sevriem/projects/cs3100-project4-avlTrees/main",
+            "binaryArgs": []
+        }
+    ]
+}
