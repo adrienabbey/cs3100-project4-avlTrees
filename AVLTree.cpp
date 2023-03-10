@@ -36,6 +36,6 @@ int AVLTree::getSize()
 {
 }
 
-friend ostream &operator<<(ostream &os, const AVLTree &me)
+ostream &operator<<(ostream &os, const AVLTree &me)
 {
 }
