@@ -18,6 +18,13 @@ AVLTree::AVLTree()
 /* Methods */
 bool AVLTree::insert(int key, string value)
 {
+    // Inserts the given key and value into this tree.
+
+    // FIXME: test code, inserts just a root node:
+    root = new AVLNode(key, value);
+
+    // FIXME: return 'false' if the key already exists:
+    return true;
 }
 
 bool AVLTree::find(int key, string &value)

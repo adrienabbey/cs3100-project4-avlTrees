@@ -11,6 +11,7 @@ int main()
 {
     // Create an empty AVLTree:
     AVLTree newTree;
-    
+    cout << newTree.insert(40, "Forty") << endl;
+
     return 0;
 }
