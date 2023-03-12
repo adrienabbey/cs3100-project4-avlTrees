@@ -22,18 +22,18 @@ private:
 public:
     AVLNode(int key, string value); // Constructor
 
-    int AVLNode::getKey();
-    int AVLNode::setKey(int value);
+    int getKey();
+    int setKey(int value);
 
-    string AVLNode::getValue();
-    string AVLNode::setValue(int value);
+    string getValue();
+    string setValue(int value);
 
-    AVLNode AVLNode::getLeftChild();
-    AVLNode AVLNode::setLeftChild(AVLNode node);
+    AVLNode getLeftChild();
+    AVLNode setLeftChild(AVLNode node);
 
-    AVLNode AVLNode::getRightChild();
-    AVLNode AVLNode::setRightChild(AVLNode node);
+    AVLNode getRightChild();
+    AVLNode setRightChild(AVLNode node);
 
-    // int AVLNode::getHeight();
-    // int AVLNode::getBalance();
+    // int getHeight();
+    // int getBalance();
 };

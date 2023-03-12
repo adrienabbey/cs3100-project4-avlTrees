@@ -17,10 +17,10 @@ private:
 
 public:
     AVLTree(); // Constructor
-    bool AVLTree::insert(int key, string value);
-    bool AVLTree::find(int key, string &value);
-    vector<string> AVLTree::findRange(int lowkey, int highkey);
-    int AVLTree::getHeight();
-    int AVLTree::getSize();
+    bool insert(int key, string value);
+    bool find(int key, string &value);
+    vector<string> findRange(int lowkey, int highkey);
+    int getHeight();
+    int getSize();
     friend ostream &operator<<(ostream &os, const AVLTree &me);
 };
