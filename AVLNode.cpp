@@ -12,6 +12,10 @@ AVLNode::AVLNode(int newKey, string newValue)
 {
     key = newKey;
     value = newValue;
+    height = 0;
+
+    leftChild = nullptr;
+    rightChild = nullptr;
 }
 
 /* Methods */

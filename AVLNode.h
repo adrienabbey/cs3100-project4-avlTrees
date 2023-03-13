@@ -11,12 +11,12 @@ class AVLNode
 private:
     int key;
     string value;
+    int height;
 
+    AVLNode *parentNode;
     AVLNode *leftChild;
     AVLNode *rightChild;
 
-    // AVLNode *parent;
-    // int height;
     // int balance;
 
 public:
