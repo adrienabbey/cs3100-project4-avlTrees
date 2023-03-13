@@ -12,8 +12,8 @@ class AVLTree
 {
 private:
     AVLNode *root;
+    int size;
     // int height;
-    // int size;
 
 public:
     AVLTree(); // Constructor

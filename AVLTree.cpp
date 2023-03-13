@@ -13,12 +13,15 @@ AVLTree::AVLTree()
 {
     // Empty AVLTree constructor.
     AVLNode *root = nullptr;
+    size = 0;
 }
 
 /* Methods */
 bool AVLTree::insert(int key, string value)
 {
     // Inserts the given key and value into this tree.
+
+    // REMINDER: Increase tree size when insert is successful!
 
     // FIXME: test code, inserts just a root node:
     root = new AVLNode(key, value);
