@@ -25,20 +25,22 @@ int AVLNode::getKey()
     return key;
 }
 
-int AVLNode::setKey(int value)
-{
-}
+// int AVLNode::setKey(int value)
+// {
+// }
 
 string AVLNode::getValue()
 {
+    return value;
 }
 
-string AVLNode::setValue(int value)
-{
-}
+// string AVLNode::setValue(int value)
+// {
+// }
 
 AVLNode *AVLNode::getLeftChild()
 {
+    return leftChild;
 }
 
 AVLNode AVLNode::setLeftChild(AVLNode *node)
