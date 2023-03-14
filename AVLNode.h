@@ -28,11 +28,11 @@ public:
     string getValue();
     string setValue(int value);
 
-    AVLNode getLeftChild();
-    AVLNode setLeftChild(AVLNode node);
+    AVLNode *getLeftChild();
+    AVLNode setLeftChild(AVLNode *node);
 
-    AVLNode getRightChild();
-    AVLNode setRightChild(AVLNode node);
+    AVLNode *getRightChild();
+    AVLNode setRightChild(AVLNode *node);
 
     // int getHeight();
     // int getBalance();
