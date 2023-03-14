@@ -21,6 +21,8 @@ public:
     vector<string> findRange(int lowkey, int highkey);
     void updateHeight(AVLNode *node);
     void rebalance(AVLNode *node);
+    void rotateRight(AVLNode *node);
+    void rotateLeft(AVLNode *node);
     int getHeight();
     int getSize();
     friend ostream &operator<<(ostream &os, const AVLTree &me);
