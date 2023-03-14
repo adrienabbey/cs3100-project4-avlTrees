@@ -69,3 +69,40 @@ void AVLNode::setHeight(int newHeight)
 {
     height = newHeight;
 }
+
+int AVLNode::getBalance()
+{
+    // Calculates and returns the balance of this node.
+    // This is the height of the left child minus the height of the right child.
+
+    // Track height of children:
+    int leftHeight = 0;
+    int rightHeight = 0;
+
+    // If there's no left child:
+    if (leftChild == nullptr)
+    {
+        // Then the left height is -1:
+        leftHeight = -1;
+    }
+    else
+    {
+        // Otherwise, it's the left child's height:
+        leftHeight = leftChild->getHeight();
+    }
+
+    // If there's no right child:
+    if (rightChild == nullptr)
+    {
+        // Then the right height is -1:
+        rightHeight = -1;
+    }
+    else
+    {
+        // Otherwise, it's the right child's height:
+        rightHeight = rightChild->getHeight();
+    }
+
+    // Calculate and return this node's balance
+    return (leftHeight - rightHeight);
+}

@@ -37,5 +37,5 @@ public:
 
     int getHeight();
     void setHeight(int newHeight);
-    // int getBalance();
+    int getBalance();
 };
