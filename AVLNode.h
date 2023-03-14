@@ -23,16 +23,17 @@ public:
     AVLNode(int key, string value); // Constructor
 
     int getKey();
-    // int setKey(int value);
 
     string getValue();
-    // string setValue(int value);
 
     AVLNode *getLeftChild();
-    AVLNode setLeftChild(AVLNode *node);
+    void setLeftChild(AVLNode *node);
 
     AVLNode *getRightChild();
-    AVLNode setRightChild(AVLNode *node);
+    void setRightChild(AVLNode *node);
+
+    AVLNode *getParentNode();
+    void setParentNode(AVLNode *node);
 
     // int getHeight();
     // int getBalance();
