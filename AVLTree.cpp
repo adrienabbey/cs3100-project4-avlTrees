@@ -187,6 +187,15 @@ void AVLTree::updateHeight(AVLNode *node)
 void AVLTree::rebalance(AVLNode *node)
 {
     // Rebalances the tree, starting with the given node.
+    // It's assumed that this method is called after adding a new node.
+
+    // First, update the heights starting with the current node:
+    updateHeight(node);
+
+    // Get the balance of the current node:
+    int balance = node->getBalance();
+
+    // FIXME: Finish this method.
 }
 
 int AVLTree::getHeight()
