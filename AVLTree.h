@@ -13,13 +13,14 @@ class AVLTree
 private:
     AVLNode *root;
     int size;
-    // int height;
 
 public:
     AVLTree(); // Constructor
     bool insert(int key, string value);
     bool find(int key, string value);
     vector<string> findRange(int lowkey, int highkey);
+    void updateHeight(AVLNode *node);
+    void rebalance(AVLNode *node);
     int getHeight();
     int getSize();
     friend ostream &operator<<(ostream &os, const AVLTree &me);
