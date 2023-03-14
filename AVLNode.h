@@ -35,6 +35,7 @@ public:
     AVLNode *getParentNode();
     void setParentNode(AVLNode *node);
 
-    // int getHeight();
+    int getHeight();
+    void setHeight(int newHeight);
     // int getBalance();
 };

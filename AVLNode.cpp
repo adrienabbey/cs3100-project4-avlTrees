@@ -59,3 +59,13 @@ void AVLNode::setParentNode(AVLNode *node)
 {
     parentNode = node;
 }
+
+int AVLNode::getHeight()
+{
+    return height;
+}
+
+void AVLNode::setHeight(int newHeight)
+{
+    height = newHeight;
+}
