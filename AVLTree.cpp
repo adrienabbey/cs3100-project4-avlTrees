@@ -110,7 +110,7 @@ bool AVLTree::insert(int newKey, string newValue)
     }
 
     // Rebalance the tree starting with the new node:
-    // FIXME: This needs fixing.
+    rebalance(newNode);
 
     // If we got to this point, then a new node was created, return true:
     return true;
@@ -122,6 +122,71 @@ bool AVLTree::find(int key, string value)
 
 vector<string> AVLTree::findRange(int lowkey, int highkey)
 {
+}
+
+void AVLTree::updateHeight(AVLNode *node)
+{
+    // Updates the heights of the given node, and its parents.
+
+    // Track the heights of each child node:
+    int leftHeight = 0;
+    int rightHeight = 0;
+
+    // Get the hights of each child.
+    // If the left node is null:
+    if (node->getLeftChild() == nullptr)
+    {
+        // Then the left height is -1:
+        leftHeight = -1;
+    }
+    else
+    {
+        // Otherwise, it's the left child's height:
+        leftHeight = node->getLeftChild()->getHeight();
+    }
+
+    // If the right node is null:
+    if (node->getRightChild() == nullptr)
+    {
+        // Then the right height is -1:
+        rightHeight = -1;
+    }
+    else
+    {
+        // Otherwise, it's the right child's height:
+        rightHeight = node->getRightChild()->getHeight();
+    }
+
+    // Determine which child node's height is greater:
+    // If left child is higher than the right child:
+    if (leftHeight > rightHeight)
+    {
+        // Then this node's height is that + 1:
+        node->setHeight(leftHeight + 1);
+    }
+    // If the right child is higher than the left:
+    else if (rightHeight > leftHeight)
+    {
+        // Then this node is that height +1:
+        node->setHeight(rightHeight + 1);
+    }
+    else
+    {
+        // Otherwise, the heights are equal, so set the height to that +1:
+        node->setHeight(leftHeight + 1);
+    }
+
+    // If this node has a parent:
+    if (node->getParentNode() != nullptr)
+    {
+        // Then update the height of the parent as well:
+        updateHeight(node->getParentNode());
+    }
+}
+
+void AVLTree::rebalance(AVLNode *node)
+{
+    // Rebalances the tree, starting with the given node.
 }
 
 int AVLTree::getHeight()
