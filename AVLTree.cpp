@@ -54,7 +54,7 @@ bool AVLTree::insert(int newKey, string newValue)
     return true;
 }
 
-bool AVLTree::find(int key, string &value)
+bool AVLTree::find(int key, string value)
 {
 }
 

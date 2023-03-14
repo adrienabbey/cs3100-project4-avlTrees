@@ -18,7 +18,7 @@ private:
 public:
     AVLTree(); // Constructor
     bool insert(int key, string value);
-    bool find(int key, string &value);
+    bool find(int key, string value);
     vector<string> findRange(int lowkey, int highkey);
     int getHeight();
     int getSize();
