@@ -195,15 +195,66 @@ void AVLTree::rebalance(AVLNode *node)
     // Get the balance of the current node:
     int balance = node->getBalance();
 
-    // FIXME: Finish this method.
+    // FIXME: The following if statements calculate each node's balance repeatedly.
+    // There may be a more efficient way to do this.
+
+    // If the balance is -2:
+    if (node->getBalance() == -2)
+    {
+        // And a right child exists:
+        if (node->getRightChild() != nullptr)
+        {
+            // and the right child's balance is 1:
+            if (node->getRightChild()->getBalance() == 1)
+            {
+                // Then we need a double rotation, starting with a right rotation of the right child:
+                rotateRight(node->getRightChild());
+            }
+        }
+        // Regardless of what happened to the right child...
+        // Do a left rotation of the node:
+        rotateLeft(node);
+    }
+    // If the balance is +2:
+    else if (node->getBalance() == 2)
+    {
+        // And the left child exists:
+        if (node->getLeftChild() != nullptr)
+        {
+            // and the left child's balance is -1:
+            if (node->getLeftChild()->getBalance() == -1)
+            {
+                // Then we need a doubel rotation, starting with a left rotation of the left child:
+                rotateLeft(node->getLeftChild());
+            }
+        }
+        // Regardless of what happened to the left child...
+        // Do a right rotation of the node:
+        rotateRight(node);
+    }
+}
+
+void rotateRight(AVLNode *node)
+{
+}
+
+void rotateLeft(AVLNode *node)
+{
 }
 
 int AVLTree::getHeight()
 {
+    // The height of this tree is the height of the root node:
+    return root->getHeight();
+    // This is O(1) time complexity!
+    // It works because each node remembers its height.
+    // The height of each new node (and its ancestors) gets updated when appropriate.
 }
 
 int AVLTree::getSize()
 {
+    return size;
+    // Note: this is O(1) time, as this variable is incremented whenever a new node is added.
 }
 
 ostream &operator<<(ostream &os, const AVLTree &me)
