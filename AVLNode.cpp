@@ -16,11 +16,13 @@ AVLNode::AVLNode(int newKey, string newValue)
 
     leftChild = nullptr;
     rightChild = nullptr;
+    parentNode = nullptr;
 }
 
 /* Methods */
 int AVLNode::getKey()
 {
+    return key;
 }
 
 int AVLNode::setKey(int value)
@@ -35,18 +37,18 @@ string AVLNode::setValue(int value)
 {
 }
 
-AVLNode AVLNode::getLeftChild()
+AVLNode *AVLNode::getLeftChild()
 {
 }
 
-AVLNode AVLNode::setLeftChild(AVLNode node)
+AVLNode AVLNode::setLeftChild(AVLNode *node)
 {
 }
 
-AVLNode AVLNode::getRightChild()
+AVLNode *AVLNode::getRightChild()
 {
 }
 
-AVLNode AVLNode::setRightChild(AVLNode node)
+AVLNode AVLNode::setRightChild(AVLNode *node)
 {
 }
