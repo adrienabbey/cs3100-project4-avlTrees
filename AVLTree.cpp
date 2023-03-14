@@ -234,11 +234,11 @@ void AVLTree::rebalance(AVLNode *node)
     }
 }
 
-void rotateRight(AVLNode *node)
+void AVLTree::rotateRight(AVLNode *node)
 {
 }
 
-void rotateLeft(AVLNode *node)
+void AVLTree::rotateLeft(AVLNode *node)
 {
 }
 
