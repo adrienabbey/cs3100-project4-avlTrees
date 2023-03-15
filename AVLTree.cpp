@@ -236,9 +236,45 @@ void AVLTree::rebalance(AVLNode *node)
 
 void AVLTree::rotateRight(AVLNode *node)
 {
+    // Perform a right rotation, where the given node is the 'hook' node,
+    // and it's parent is the 'problem' node.
+
+    // Save the node's right child:
+    AVLNode *hooksRightChild = node->getRightChild();
+
+    // If the node's parent exists:
+    if (node->getParentNode() != nullptr)
+    {
+        // Then replace that node with the current node:
+        replaceChild(node->getParentNode(), node, node->getLeftChild());
+    }
+    else
+    {
+        // Otherwise, this is the root node.
+
+        // Replace the root node with this node's left child:
+        root = node->getLeftChild();
+
+        // The new root node has no parent:
+        root->setParentNode(nullptr);
+    }
+
+    // Set the right child of this node's left child to be this node:
+    setChild(node->getLeftChild(), "right", node);
+
+    // Set this node's left child to be the saved node from earlier:
+    setChild(node, "left", hooksRightChild);
 }
 
 void AVLTree::rotateLeft(AVLNode *node)
+{
+}
+
+void AVLTree::replaceChild(AVLNode *parentNode, AVLNode *currentChild, AVLNode *newChild)
+{
+}
+
+void AVLTree::setChild(AVLNode *parentNode, string leftOrRight, AVLNode *childNode)
 {
 }
 
