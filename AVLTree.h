@@ -23,6 +23,8 @@ public:
     void rebalance(AVLNode *node);
     void rotateRight(AVLNode *node);
     void rotateLeft(AVLNode *node);
+    void replaceChild(AVLNode *parentNode, AVLNode *currentChild, AVLNode *newChild);
+    void setChild(AVLNode *parentNode, string leftOrRight, AVLNode *childNode);
     int getHeight();
     int getSize();
     friend ostream &operator<<(ostream &os, const AVLTree &me);
