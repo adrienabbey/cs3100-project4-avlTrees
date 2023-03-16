@@ -246,7 +246,7 @@ void AVLTree::rotateRight(AVLNode *node)
     if (node->getParentNode() != nullptr)
     {
         // Then replace that node with the current node:
-        replaceChild(node->getParentNode(), node, node->getLeftChild());
+        replaceChild(node, node->getLeftChild());
     }
     else
     {
@@ -270,12 +270,74 @@ void AVLTree::rotateLeft(AVLNode *node)
 {
 }
 
-void AVLTree::replaceChild(AVLNode *parentNode, AVLNode *currentChild, AVLNode *newChild)
+void AVLTree::replaceChild(AVLNode *currentChild, AVLNode *newChild)
 {
+    // Replaces the current child node with a new child, using the setChild node to do this.
+
+    // Find the parent of the current child (excluding root):
+    AVLNode *parentNode = currentChild->getParentNode();
+    string leftOrRight = nullptr;
+
+    // Determine if the current child is "left" or "right".
+    // If the current child is the left child of the parent:
+    if (parentNode->getLeftChild() == currentChild)
+    {
+        // Then specify "left":
+        leftOrRight = "left";
+    }
+    // If the current child is the right child of the parent:
+    else if (parentNode->getRightChild() == currentChild)
+    {
+        // Then specify "right":
+        leftOrRight = "right";
+    }
+    else
+    {
+        // Something went horribly wrong.  Throw an error:
+        cout << "Something went horribly wrong.  Child's direction could not be determined." << endl;
+    }
+
+    // Replace the child of the current child with a new child:
+    setChild(parentNode, leftOrRight, newChild);
+
+    // The old child's parent should be set to null:
+    currentChild->setParentNode(nullptr);
 }
 
 void AVLTree::setChild(AVLNode *parentNode, string leftOrRight, AVLNode *childNode)
 {
+    // Set the given child node as the left or right child of the given parent node:
+    // Note: this does not check if it's replacing an existing child node.
+
+    // If "left" child specified:
+    if (leftOrRight.compare("left") == 0)
+    {
+        // Then set the given child node to the left child of the parent node:
+        parentNode->setLeftChild(childNode);
+
+        // Update the child's parent pointer:
+        childNode->setParentNode(parentNode);
+
+        // Update the parent node's height:
+        updateHeight(parentNode);
+    }
+    // If "right" child is specified:
+    else if (leftOrRight.compare("right") == 0)
+    {
+        // Then set the given child node to be the right child of the parent node:
+        parentNode->setRightChild(childNode);
+
+        // Update the child's parent pointer:
+        childNode->setParentNode(parentNode);
+
+        // Update the parent node's height:
+        updateHeight(parentNode);
+    }
+    else
+    {
+        // Otherwise, invalid input, throw an error:
+        cout << "Invalid child direction specified!" << endl;
+    }
 }
 
 int AVLTree::getHeight()
