@@ -192,9 +192,6 @@ void AVLTree::rebalance(AVLNode *node)
     // First, update the heights starting with the current node:
     updateHeight(node);
 
-    // Get the balance of the current node:
-    int balance = node->getBalance();
-
     // FIXME: The following if statements calculate each node's balance repeatedly.
     // There may be a more efficient way to do this.
 

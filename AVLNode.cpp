@@ -3,6 +3,7 @@
 // Visual Studio Code Server, Ubuntu 22.04, g++/gdb
 
 #include <string>
+#include <iostream>
 #include "AVLNode.h"
 
 using namespace std;
@@ -102,6 +103,9 @@ int AVLNode::getBalance()
         // Otherwise, it's the right child's height:
         rightHeight = rightChild->getHeight();
     }
+
+    // Test code, please ignore:
+    cout << value << "'s balance is " << leftHeight - rightHeight << endl;
 
     // Calculate and return this node's balance
     return (leftHeight - rightHeight);
