@@ -246,8 +246,8 @@ void AVLTree::rotateRight(AVLNode *node)
     // Perform a right rotation, where the given node is the 'hook' node,
     // and it's parent is the 'problem' node.
 
-    // Save the node's right child:
-    AVLNode *hooksRightChild = node->getRightChild();
+    // Save the left child's right child:
+    AVLNode *savedChild = node->getLeftChild()->getRightChild();
 
     // If the node's parent exists:
     if (node->getParentNode() != nullptr)
@@ -270,11 +270,36 @@ void AVLTree::rotateRight(AVLNode *node)
     setChild(node->getLeftChild(), "right", node);
 
     // Set this node's left child to be the saved node from earlier:
-    setChild(node, "left", hooksRightChild);
+    setChild(node, "left", savedChild);
 }
 
 void AVLTree::rotateLeft(AVLNode *node)
 {
+    // Save the right child's left child:
+    AVLNode *savedChild = node->getRightChild()->getLeftChild();
+
+    // If the node's parent exists:
+    if (node->getParentNode() != nullptr)
+    {
+        // Then replace that node with the current node:
+        replaceChild(node, node->getRightChild());
+    }
+    else
+    {
+        // Otherwise, this is the root node.
+
+        // Replace the root node with this node's right child:
+        root = node->getRightChild();
+
+        // The root node has no parent:
+        root->setParentNode(nullptr);
+    }
+
+    // Set the left child of this node's right child to be this node:
+    setChild(node->getRightChild(), "left", node);
+
+    // Set this node's right child to be the saved node from earlier:
+    setChild(node, "right", savedChild);
 }
 
 void AVLTree::replaceChild(AVLNode *currentChild, AVLNode *newChild)
@@ -338,8 +363,12 @@ void AVLTree::setChild(AVLNode *parentNode, string leftOrRight, AVLNode *childNo
         // Then set the given child node to be the right child of the parent node:
         parentNode->setRightChild(childNode);
 
-        // Update the child's parent pointer:
-        childNode->setParentNode(parentNode);
+        // If the child node is not null:
+        if (childNode != nullptr)
+        {
+            // Update the child's parent pointer:
+            childNode->setParentNode(parentNode);
+        }
 
         // Update the parent node's height:
         updateHeight(parentNode);
