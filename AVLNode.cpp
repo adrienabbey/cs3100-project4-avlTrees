@@ -105,7 +105,7 @@ int AVLNode::getBalance()
     }
 
     // Test code, please ignore:
-    cout << value << "'s balance is " << leftHeight - rightHeight << endl;
+    // cout << value << "'s balance is " << leftHeight - rightHeight << endl;
 
     // Calculate and return this node's balance
     return (leftHeight - rightHeight);
