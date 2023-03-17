@@ -407,7 +407,8 @@ ostream &printMe(ostream &os, AVLNode *node, int depth)
         printMe(os, node->getRightChild(), depth + 1);
 
         // Print this node with the appropriate number of spaces:
-        // FIXME: Do proper indentation!
+        // indentation example code from: https://stackoverflow.com/a/1550334
+        os << string(depth * 4, ' ');
         os << node->getKey() << ", " << node->getValue() << endl;
 
         // Finally, print this node's left child:
