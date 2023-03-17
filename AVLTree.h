@@ -4,28 +4,34 @@
 
 #include <string>
 #include <vector>
+#include <ostream>
 #include "AVLNode.h"
 
 using namespace std;
+
+// In order to make this function usable, I needed to declare it before the class:
+// https://stackoverflow.com/a/9608888
+ostream &printMe(ostream &os, AVLNode *node, int depth);
 
 class AVLTree
 {
 private:
     AVLNode *root;
     int size;
+    void rebalance(AVLNode *node);
+    void rotateRight(AVLNode *node);
+    void rotateLeft(AVLNode *node);
+    void replaceChild(AVLNode *currentChild, AVLNode *newChild);
+    void setChild(AVLNode *parentNode, string leftOrRight, AVLNode *childNode);
+    void updateHeight(AVLNode *node);
 
 public:
     AVLTree(); // Constructor
     bool insert(int key, string value);
     bool find(int key, string value);
     vector<string> findRange(int lowkey, int highkey);
-    void updateHeight(AVLNode *node);
-    void rebalance(AVLNode *node);
-    void rotateRight(AVLNode *node);
-    void rotateLeft(AVLNode *node);
-    void replaceChild(AVLNode *currentChild, AVLNode *newChild);
-    void setChild(AVLNode *parentNode, string leftOrRight, AVLNode *childNode);
     int getHeight();
     int getSize();
+    friend ostream &printMe(ostream &os, AVLNode *node, int depth);
     friend ostream &operator<<(ostream &os, const AVLTree &me);
 };
