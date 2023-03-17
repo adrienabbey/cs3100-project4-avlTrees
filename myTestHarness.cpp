@@ -23,6 +23,8 @@ int main()
     cout << newTree.insert(25, "Twenty Five");
     cout << newTree.insert(40, "Forty") << endl;
 
+    cout << newTree << endl;
+
     cout << "Tree height: " << newTree.getHeight() << endl;
     cout << "Tree size: " << newTree.getSize() << endl;
 
