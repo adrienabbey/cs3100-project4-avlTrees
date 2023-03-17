@@ -5,5 +5,8 @@
             "binaryPath": "/home/sevriem/projects/cs3100-project4-avlTrees/main",
             "binaryArgs": []
         }
-    ]
+    ],
+    "files.associations": {
+        "iosfwd": "cpp"
+    }
 }
