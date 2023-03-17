@@ -34,5 +34,8 @@ int main()
     cout << "Tree height: " << tinyTree.getHeight() << endl;
     cout << "Tree size: " << tinyTree.getSize() << endl;
 
+    string findString = "";
+    cout << "Find 5 gives " << newTree.find(5, findString);
+
     return 0;
 }

@@ -126,8 +126,45 @@ bool AVLTree::insert(int newKey, string newValue)
     return true;
 }
 
-bool AVLTree::find(int key, string value)
+bool AVLTree::find(int key, string &value)
 {
+    // Search the tree for the given key.
+    // If the key is found, update the given value string, then return true.
+    // If the key is not found, return false.
+
+    // Search the tree, starting at the root node:
+    AVLNode *currentNode = root;
+
+    // While the current node is not null:
+    while (currentNode != nullptr)
+    {
+        // If the current node is the desired key:
+        if (currentNode->getKey() == key)
+        {
+            // Then we found our key!
+
+            // Update the given value string pointer to the node's value:
+            value = currentNode->getValue();
+
+            // Return true:
+            return true;
+        }
+        // If the key is less than the current node:
+        else if (key < currentNode->getKey())
+        {
+            // Then we need to move to the left child:
+            currentNode = currentNode->getLeftChild();
+        }
+        // If the key is greater than the current node:
+        else if (key > currentNode->getKey())
+        {
+            // Then move onto the right child:
+            currentNode = currentNode->getRightChild();
+        }
+    }
+
+    // The key was not found.  Return false:
+    return false;
 }
 
 vector<string> AVLTree::findRange(int lowkey, int highkey)
