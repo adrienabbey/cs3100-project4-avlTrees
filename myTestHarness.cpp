@@ -21,18 +21,28 @@ int main()
     cout << newTree.insert(70, "Seventy");
     cout << newTree.insert(80, "Eighty");
     cout << newTree.insert(25, "Twenty Five");
-    cout << newTree.insert(40, "Forty") << endl;
+    cout << newTree.insert(40, "Forty") << endl
+         << endl;
 
+    // Print the tree:
     cout << newTree << endl;
 
+    // Print tree statistics:
     cout << "Tree height: " << newTree.getHeight() << endl;
-    cout << "Tree size: " << newTree.getSize() << endl;
+    cout << "Tree size: " << newTree.getSize() << endl
+         << endl;
 
-    AVLTree tinyTree;
-    tinyTree.insert(1, "one");
+    string findString = "Nothing found.";
+    // Test the find function:
+    cout << "Find 5 gives: " << newTree.find(5, findString) << " " << findString << endl;
+    findString = "Nothing found.";
+    cout << "Find 100 gives: " << newTree.find(100, findString) << " " << findString << endl;
 
-    cout << "Tree height: " << tinyTree.getHeight() << endl;
-    cout << "Tree size: " << tinyTree.getSize() << endl;
+    // AVLTree tinyTree;
+    // tinyTree.insert(1, "one");
+
+    // cout << "Tree height: " << tinyTree.getHeight() << endl;
+    // cout << "Tree size: " << tinyTree.getSize() << endl;
 
     return 0;
 }
