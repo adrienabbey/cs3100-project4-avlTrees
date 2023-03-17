@@ -109,8 +109,18 @@ bool AVLTree::insert(int newKey, string newValue)
         }
     }
 
-    // Rebalance the tree starting with the new node:
-    rebalance(newNode);
+    // After inserting a new node, we need to rebalance the tree, starting with the parent node:
+    currentNode = newNode->getParentNode();
+
+    // While there are ancestor nodes to rebalance:
+    while (currentNode != nullptr)
+    {
+        // Rebalance the current node:
+        rebalance(currentNode);
+
+        // Continue working up the tree:
+        currentNode = currentNode->getParentNode();
+    }
 
     // If we got to this point, then a new node was created, return true:
     return true;
@@ -273,7 +283,7 @@ void AVLTree::replaceChild(AVLNode *currentChild, AVLNode *newChild)
 
     // Find the parent of the current child (excluding root):
     AVLNode *parentNode = currentChild->getParentNode();
-    string leftOrRight = nullptr;
+    string leftOrRight = "";
 
     // Determine if the current child is "left" or "right".
     // If the current child is the left child of the parent:
@@ -312,8 +322,12 @@ void AVLTree::setChild(AVLNode *parentNode, string leftOrRight, AVLNode *childNo
         // Then set the given child node to the left child of the parent node:
         parentNode->setLeftChild(childNode);
 
-        // Update the child's parent pointer:
-        childNode->setParentNode(parentNode);
+        // If the child node is not null:
+        if (childNode != nullptr)
+        {
+            // Update the child's parent pointer:
+            childNode->setParentNode(parentNode);
+        }
 
         // Update the parent node's height:
         updateHeight(parentNode);
