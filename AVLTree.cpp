@@ -169,6 +169,11 @@ bool AVLTree::find(int key, string &value)
 
 vector<string> AVLTree::findRange(int lowkey, int highkey)
 {
+    // Return a vector containing all the VALUES between the two keys (inclusive).
+    // NOTE: I saw no mention of O time complexity, so I'm assuming I don't need to be overly efficient here.
+
+    // Create a vector to return:
+    vector<string> returnVector;
 }
 
 void AVLTree::updateHeight(AVLNode *node)
