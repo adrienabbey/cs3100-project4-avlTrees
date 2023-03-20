@@ -11,7 +11,8 @@ using namespace std;
 
 // In order to make this function usable, I needed to declare it before the class:
 // https://stackoverflow.com/a/9608888
-ostream &printMe(ostream &os, AVLNode *node, int depth);
+// ostream &printMe(ostream &os, AVLNode *node, int depth);
+// Note: I'm moving this to the AVLNode class, as that makes FAR more sense.
 
 class AVLTree
 {
@@ -32,6 +33,6 @@ public:
     vector<string> findRange(int lowkey, int highkey);
     int getHeight();
     int getSize();
-    friend ostream &printMe(ostream &os, AVLNode *node, int depth);
+    // friend ostream &printMe(ostream &os, AVLNode *node, int depth);
     friend ostream &operator<<(ostream &os, const AVLTree &me);
 };

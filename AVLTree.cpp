@@ -432,30 +432,6 @@ int AVLTree::getSize()
     // Note: this is O(1) time, as this variable is incremented whenever a new node is added.
 }
 
-ostream &printMe(ostream &os, AVLNode *node, int depth)
-{
-    // This is a recursive function to print the AVLTree according to the project instructions.
-    // Order is: right child, self, then left child:
-
-    // If the node is not null:
-    if (node != nullptr)
-    {
-        // Then print this node's right child:
-        printMe(os, node->getRightChild(), depth + 1);
-
-        // Print this node with the appropriate number of spaces:
-        // indentation example code from: https://stackoverflow.com/a/1550334
-        os << string(depth * 4, ' ');
-        os << node->getKey() << ", " << node->getValue() << endl;
-
-        // Finally, print this node's left child:
-        printMe(os, node->getLeftChild(), depth + 1);
-    }
-
-    // Return the ostream:
-    return os;
-}
-
 ostream &operator<<(ostream &os, const AVLTree &me)
 {
     // This prints out the tree SIDEWAYS, in order, biggest number at top.

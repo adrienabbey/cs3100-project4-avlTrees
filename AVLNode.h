@@ -38,4 +38,6 @@ public:
     int getHeight();
     void setHeight(int newHeight);
     int getBalance();
+
+    friend ostream &printMe(ostream &os, AVLNode *node, int depth);
 };
