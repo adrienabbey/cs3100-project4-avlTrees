@@ -70,6 +70,14 @@ int main()
 
      AVLTree randTree;
      generateRandNodes(randTree);
+     int randLow = (rand() % 50) + 1;
+     int randHigh = (rand() % 50) + 51;
+     vector<string> findRangeResultVector = randTree.findRange(randLow, randHigh);
+     cout << "Find values between " << randLow << " and " << randHigh << " results in:" << endl;
+     for (string i : findRangeResultVector)
+     {
+          cout << "    " << i << ", ";
+     }
 
      return 0;
 }

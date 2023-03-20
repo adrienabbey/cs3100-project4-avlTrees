@@ -174,6 +174,9 @@ vector<string> AVLTree::findRange(int lowkey, int highkey)
 
     // Create a vector to return:
     vector<string> returnVector;
+
+    // Find the given range of keys in the tree, starting with the root node.
+    root->findRange(root, returnVector, lowkey, highkey);
 }
 
 void AVLTree::updateHeight(AVLNode *node)

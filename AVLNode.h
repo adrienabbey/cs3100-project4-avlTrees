@@ -42,5 +42,5 @@ public:
 
     friend ostream &printMe(ostream &os, AVLNode *node, int depth);
 
-    void findRange(AVLNode *node, vector<string> &valueVector, int lowKey, int highKey);
+    void findRange(AVLNode *node, vector<string> valueVector, int lowKey, int highKey);
 };
