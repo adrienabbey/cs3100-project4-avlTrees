@@ -3,6 +3,7 @@
 // Visual Studio Code Server, Ubuntu 22.04, g++/gdb
 
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -40,4 +41,6 @@ public:
     int getBalance();
 
     friend ostream &printMe(ostream &os, AVLNode *node, int depth);
+
+    void findRange(AVLNode *node, vector<string> &valueVector, int lowKey, int highKey);
 };

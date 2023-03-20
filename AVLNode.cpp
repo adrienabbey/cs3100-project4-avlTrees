@@ -134,3 +134,27 @@ ostream &printMe(ostream &os, AVLNode *node, int depth)
     // Return the ostream:
     return os;
 }
+
+void AVLNode::findRange(AVLNode *node, vector<string> &valueVector, int lowKey, int highKey)
+{
+    // Look for nodes with keys between the two given values (inclusive), adding them to the given vector if found.
+    // Recursive function: calls itself again for each child.
+
+    // While the given node is NOT null:
+    while (node != nullptr)
+    {
+        // In-order search: start with the left child:
+        findRange(node->getLeftChild(), valueVector, lowKey, highKey);
+
+        // In-order search: next, this node:
+        // If this node's key is within the given range (inclusive):
+        if (node->getKey() >= lowKey && node->getKey() <= highKey)
+        {
+            // Then add this node's value to the string vector:
+            valueVector.push_back(node->getValue());
+        }
+
+        // In-orer search: finally, the right child node:
+        findRange(node->getRightChild(), valueVector, lowKey, highKey);
+    }
+}
