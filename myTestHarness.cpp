@@ -69,11 +69,11 @@ int main()
      // cout << "Tree height: " << tinyTree.getHeight() << endl;
      // cout << "Tree size: " << tinyTree.getSize() << endl;
 
-     AVLTree randTree;
-     generateRandNodes(randTree);
+     AVLTree *randTree = new AVLTree();
+     generateRandNodes(*randTree);
      int randLow = (rand() % 50) + 1;
      int randHigh = (rand() % 50) + 51;
-     vector<string> findRangeResultVector = randTree.findRange(randLow, randHigh);
+     vector<string> findRangeResultVector = randTree->findRange(randLow, randHigh);
      cout << "Find values between " << randLow << " and " << randHigh << " results in:" << endl
           << "    ";
      for (string i : findRangeResultVector)
@@ -81,6 +81,9 @@ int main()
           cout << i << ", ";
      }
      cout << endl;
+
+     // Test the randTree clear function:
+     delete randTree;
 
      return 0;
 }
