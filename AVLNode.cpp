@@ -8,7 +8,7 @@
 
 using namespace std;
 
-/* Constructors */
+/* Constructors, Deconstructors */
 AVLNode::AVLNode(int newKey, string newValue)
 {
     key = newKey;
@@ -156,5 +156,30 @@ void AVLNode::findRange(AVLNode *node, vector<string> &valueVector, int lowKey, 
 
         // In-orer search: finally, the right child node:
         findRange(node->getRightChild(), valueVector, lowKey, highKey);
+    }
+}
+
+void AVLNode::clearHelper()
+{
+    // This helper method is used to ensure children of the given node get
+    // deleted properly.  It calls itself recursively, deleting each child
+    // node before deleting itself.  Note: nodes cannot delete themselves, so
+    // the first time this method is called needs to remember to delete that
+    // node after.
+
+    // If the left child exists:
+    if (leftChild != nullptr)
+    {
+        // Call this method recursively on that child:
+        leftChild->clearHelper();
+        // Then delete the child:
+        delete leftChild;
+    }
+
+    // Same with the right child:
+    if (rightChild != nullptr)
+    {
+        rightChild->clearHelper();
+        delete rightChild;
     }
 }
