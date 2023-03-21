@@ -82,6 +82,9 @@ int main()
      }
      cout << endl;
 
+     // Test the =operator override method, should give me a deep copy of randTree:
+     AVLTree *copyTree = randTree;
+
      // Test the randTree clear function:
      delete randTree;
 

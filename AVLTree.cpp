@@ -16,6 +16,18 @@ AVLTree::AVLTree()
     size = 0;
 }
 
+AVLTree::AVLTree(const AVLTree &originalTree)
+{
+    // Create a deep copy of the given tree.
+
+    // Initialize this tree:
+    root = nullptr;
+    size = 0;
+
+    // Start copying nodes from the original tree:
+    root = copyHelper(originalTree.root);
+}
+
 AVLTree::~AVLTree()
 {
     // Deconstructor override.  This IS needed, as I regularly create 'new' AVLNodes,
@@ -426,5 +438,55 @@ AVLTree &AVLTree::operator=(const AVLTree &s)
     // Clear this tree, making it ready for new nodes:
     clear();
 
-    // To create deep copies of nodes, I should probably use a recursive copyHelper method.
+    // To create deep copies of nodes, I should probably use a recursive
+    // copyHelper method.  Since this copy helper is part of the AVLNode
+    // class, I'm calling it on root (which is nullptr).  Hopefully this works
+    // fine...
+    root = copyHelper(s.root);
+
+    // Return this object:
+    return *this;
+}
+
+AVLNode *AVLTree::copyHelper(AVLNode *originalNode)
+{
+    // Creates a new deeop copy of the given node, then create new deep copies
+    // of its children nodes (recursively).  Return a pointer to the new node.
+
+    // Create a new deep copy of the original node:
+    AVLNode *newNode = new AVLNode(originalNode->getKey(), originalNode->getValue());
+
+    // Create pointers to potential future children:
+    AVLNode *newLeftChildNode = nullptr;
+    AVLNode *newRightChildNode = nullptr;
+
+    // Since I'm NOT using the insert method (as that could mangle the new
+    // tree's layout), I need to be careful about updating parent/children
+    // pointers, heights, etc.
+
+    // Recursively create deep copies of the original node's children:
+    // If there's an original left child:
+    if (originalNode->getLeftChild() != nullptr)
+    {
+        // Create a deep copy of that child:
+        newLeftChildNode = copyHelper(originalNode->getLeftChild());
+
+        // Set the parent/child pointers:
+        newNode->setLeftChild(newLeftChildNode);
+        newLeftChildNode->setParentNode(newNode);
+
+        // Update the heights of the new node and its ancestors:
+        newLeftChildNode->updateHeight();
+    }
+
+    // Repeat if there's an original right child:
+    if (originalNode->getRightChild() != nullptr)
+    {
+        newRightChildNode = copyHelper(originalNode->getRightChild());
+        newNode->setRightChild(newRightChildNode);
+        newRightChildNode->setParentNode(newNode);
+        newRightChildNode->updateHeight();
+    }
+
+    return newNode;
 }

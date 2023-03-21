@@ -32,6 +32,7 @@ private:
 public:
     /* Constructors and Deconstructors */
     AVLTree();
+    AVLTree(const AVLTree &originalTree);
     ~AVLTree();
 
     /* Methods */
@@ -42,6 +43,8 @@ public:
 
     int getHeight();
     int getSize();
+
+    AVLNode *copyHelper(AVLNode *originalNode);
 
     // friend ostream &printMe(ostream &os, AVLNode *node, int depth);
 
