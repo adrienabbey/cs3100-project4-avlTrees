@@ -28,7 +28,6 @@ private:
     void rotateLeft(AVLNode *node);
     void replaceChild(AVLNode *currentChild, AVLNode *newChild);
     void setChild(AVLNode *parentNode, string leftOrRight, AVLNode *childNode);
-    void updateHeight(AVLNode *node);
 
 public:
     /* Constructors and Deconstructors */

@@ -190,73 +190,13 @@ vector<string> AVLTree::findRange(int lowkey, int highkey)
     return returnVector;
 }
 
-void AVLTree::updateHeight(AVLNode *node)
-{
-    // Updates the heights of the given node, and its parents.
-
-    // Track the heights of each child node:
-    int leftHeight = 0;
-    int rightHeight = 0;
-
-    // Get the hights of each child.
-    // If the left node is null:
-    if (node->getLeftChild() == nullptr)
-    {
-        // Then the left height is -1:
-        leftHeight = -1;
-    }
-    else
-    {
-        // Otherwise, it's the left child's height:
-        leftHeight = node->getLeftChild()->getHeight();
-    }
-
-    // If the right node is null:
-    if (node->getRightChild() == nullptr)
-    {
-        // Then the right height is -1:
-        rightHeight = -1;
-    }
-    else
-    {
-        // Otherwise, it's the right child's height:
-        rightHeight = node->getRightChild()->getHeight();
-    }
-
-    // Determine which child node's height is greater:
-    // If left child is higher than the right child:
-    if (leftHeight > rightHeight)
-    {
-        // Then this node's height is that + 1:
-        node->setHeight(leftHeight + 1);
-    }
-    // If the right child is higher than the left:
-    else if (rightHeight > leftHeight)
-    {
-        // Then this node is that height +1:
-        node->setHeight(rightHeight + 1);
-    }
-    else
-    {
-        // Otherwise, the heights are equal, so set the height to that +1:
-        node->setHeight(leftHeight + 1);
-    }
-
-    // If this node has a parent:
-    if (node->getParentNode() != nullptr)
-    {
-        // Then update the height of the parent as well:
-        updateHeight(node->getParentNode());
-    }
-}
-
 void AVLTree::rebalance(AVLNode *node)
 {
     // Rebalances the tree, starting with the given node.
     // It's assumed that this method is called after adding a new node.
 
     // First, update the heights starting with the current node:
-    updateHeight(node);
+    node->updateHeight();
 
     // FIXME: The following if statements calculate each node's balance repeatedly.
     // There may be a more efficient way to do this.
@@ -411,7 +351,7 @@ void AVLTree::setChild(AVLNode *parentNode, string leftOrRight, AVLNode *childNo
         }
 
         // Update the parent node's height:
-        updateHeight(parentNode);
+        parentNode->updateHeight();
     }
     // If "right" child is specified:
     else if (leftOrRight.compare("right") == 0)
@@ -427,7 +367,7 @@ void AVLTree::setChild(AVLNode *parentNode, string leftOrRight, AVLNode *childNo
         }
 
         // Update the parent node's height:
-        updateHeight(parentNode);
+        parentNode->updateHeight();
     }
     else
     {
@@ -482,4 +422,9 @@ AVLTree &AVLTree::operator=(const AVLTree &s)
 {
     // Clear this sequence, then make a deep copy of every node on the given tree.
     // Note: this should preserve the tree's structure!  Lazy inserts could mnagle the layout.
+
+    // Clear this tree, making it ready for new nodes:
+    clear();
+
+    // To create deep copies of nodes, I should probably use a recursive copyHelper method.
 }
