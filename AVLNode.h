@@ -47,7 +47,6 @@ public:
     void findRange(AVLNode *node, vector<string> &valueVector, int lowKey, int highKey);
 
     void clearHelper();
-    AVLNode *copyHelper(AVLNode *originalNode);
 
     /* Overrides */
     friend ostream &printMe(ostream &os, AVLNode *node, int depth);
