@@ -140,8 +140,8 @@ void AVLNode::findRange(AVLNode *node, vector<string> &valueVector, int lowKey, 
     // Look for nodes with keys between the two given values (inclusive), adding them to the given vector if found.
     // Recursive function: calls itself again for each child.
 
-    // While the given node is NOT null:
-    while (node != nullptr)
+    // So long as the given node is not null:
+    if (node != nullptr)
     {
         // In-order search: start with the left child:
         findRange(node->getLeftChild(), valueVector, lowKey, highKey);
