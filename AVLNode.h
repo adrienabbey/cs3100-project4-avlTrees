@@ -2,6 +2,10 @@
 // Project #4: Indexing with AVL Trees
 // Visual Studio Code Server, Ubuntu 22.04, g++/gdb
 
+// NOTE: I'm assuming that this class does not need a deconstructor method to
+// be defined.  The class fields are all from the standard library, which
+// already have well defined deconstructors.
+
 #include <string>
 #include <vector>
 
@@ -17,8 +21,6 @@ private:
     AVLNode *parentNode;
     AVLNode *leftChild;
     AVLNode *rightChild;
-
-    // int balance;
 
 public:
     AVLNode(int key, string value); // Constructor
@@ -38,6 +40,7 @@ public:
 
     int getHeight();
     void setHeight(int newHeight);
+
     int getBalance();
 
     friend ostream &printMe(ostream &os, AVLNode *node, int depth);
