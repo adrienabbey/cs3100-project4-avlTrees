@@ -18,7 +18,11 @@ AVLTree::AVLTree()
 
 AVLTree::~AVLTree()
 {
-    // Deconstructor override.  This method should delete all the nodes in this tree (freeing memory) and then reset its fields.
+    // Deconstructor override.  This IS needed, as I regularly create 'new' AVLNodes,
+    // which need to be deleted.
+
+    // Just call this tree's clear function:
+    clear();
 }
 
 /* Methods */
@@ -462,6 +466,16 @@ ostream &operator<<(ostream &os, const AVLTree &me)
 void AVLTree::clear()
 {
     // Deletes all the nodes of this tree, freeing their memory.  Then resets this tree's fields.
+
+    // Use the root node's clearHelper to delete all its children:
+    root->clearHelper();
+
+    // Then delete the root node:
+    delete root;
+
+    // Finally, reset this tree's fields:
+    root = nullptr;
+    size = 0;
 }
 
 AVLTree &AVLTree::operator=(const AVLTree &s)
