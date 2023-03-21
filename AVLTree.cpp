@@ -12,7 +12,7 @@ using namespace std;
 AVLTree::AVLTree()
 {
     // Empty AVLTree constructor.
-    AVLNode *root = nullptr;
+    root = nullptr;
     size = 0;
 }
 
@@ -177,6 +177,8 @@ vector<string> AVLTree::findRange(int lowkey, int highkey)
 
     // Find the given range of keys in the tree, starting with the root node.
     root->findRange(root, returnVector, lowkey, highkey);
+
+    return returnVector;
 }
 
 void AVLTree::updateHeight(AVLNode *node)

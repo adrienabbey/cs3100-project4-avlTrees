@@ -19,9 +19,10 @@ void generateRandNodes(AVLTree &tree)
      {
           // Generate a random key value between 1 and 100:
           int randKey = (rand() % 100) + 1;
+          string randValue = to_string(randKey);
 
           // Add that new value to the tree:
-          cout << "Inserting " << randKey << ": " << tree.insert(randKey, " ") << endl;
+          cout << "Inserting " << randKey << ": " << tree.insert(randKey, randValue) << endl;
      }
 
      cout << endl
@@ -73,11 +74,13 @@ int main()
      int randLow = (rand() % 50) + 1;
      int randHigh = (rand() % 50) + 51;
      vector<string> findRangeResultVector = randTree.findRange(randLow, randHigh);
-     cout << "Find values between " << randLow << " and " << randHigh << " results in:" << endl;
+     cout << "Find values between " << randLow << " and " << randHigh << " results in:" << endl
+          << "    ";
      for (string i : findRangeResultVector)
      {
-          cout << "    " << i << ", ";
+          cout << i << ", ";
      }
+     cout << endl;
 
      return 0;
 }
