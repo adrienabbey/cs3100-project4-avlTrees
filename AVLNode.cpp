@@ -183,3 +183,97 @@ void AVLNode::clearHelper()
         delete rightChild;
     }
 }
+
+void AVLNode::updateHeight()
+{
+    // Updates the heights of the given node, and its parents.
+
+    // Track the heights of each child node:
+    int leftHeight = 0;
+    int rightHeight = 0;
+
+    // Get the hights of each child.
+    // If the left node is null:
+    if (leftChild == nullptr)
+    {
+        // Then the left height is -1:
+        leftHeight = -1;
+    }
+    else
+    {
+        // Otherwise, it's the left child's height:
+        leftHeight = leftChild->height;
+    }
+
+    // If the right node is null:
+    if (rightChild == nullptr)
+    {
+        // Then the right height is -1:
+        rightHeight = -1;
+    }
+    else
+    {
+        // Otherwise, it's the right child's height:
+        rightHeight = rightChild->height;
+    }
+
+    // Determine which child node's height is greater:
+    // If left child is higher than the right child:
+    if (leftHeight > rightHeight)
+    {
+        // Then this node's height is that + 1:
+        height = (leftHeight + 1);
+    }
+    // If the right child is higher than the left:
+    else if (rightHeight > leftHeight)
+    {
+        // Then this node is that height +1:
+        height = (rightHeight + 1);
+    }
+    else
+    {
+        // Otherwise, the heights are equal, so set the height to that +1:
+        height = (leftHeight + 1);
+    }
+}
+
+AVLNode *AVLNode::copyHelper(AVLNode *originalNode)
+{
+    // Creates a new deeop copy of the given node, then create new deep copies
+    // of its children nodes (recursively).  Return a pointer to the new node.
+
+    // Create a new deep copy of the original node:
+    AVLNode *newParentNode = new AVLNode(originalNode->key, originalNode->value);
+
+    // Create pointers to potential future children:
+    AVLNode *newLeftChildNode = nullptr;
+    AVLNode *newRightChildNode = nullptr;
+
+    // Since I'm NOT using the insert method (as that could mangle the new
+    // tree's layout), I need to be careful about updating parent/children
+    // pointers, heights, etc.
+
+    // Recursively create deep copies of the original node's children:
+    // If there's an original left child:
+    if (originalNode->leftChild != nullptr)
+    {
+        // Create a deep copy of that child:
+        newLeftChildNode = copyHelper(originalNode->leftChild);
+
+        // Set the parent/child pointers:
+        newParentNode->leftChild = newLeftChildNode;
+        newLeftChildNode->parentNode = newParentNode;
+
+        // Update the heights of the new node and its ancestors:
+        newLeftChildNode->updateHeight();
+    }
+
+    // Repeat if there's an original right child:
+    if (originalNode->rightChild != nullptr)
+    {
+        newRightChildNode = copyHelper(originalNode->rightChild);
+        newParentNode->rightChild = newRightChildNode;
+        newRightChildNode->parentNode = newParentNode;
+        newRightChildNode->updateHeight();
+    }
+}
