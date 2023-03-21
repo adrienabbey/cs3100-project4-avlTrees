@@ -13,12 +13,16 @@ using namespace std;
 // https://stackoverflow.com/a/9608888
 // ostream &printMe(ostream &os, AVLNode *node, int depth);
 // Note: I'm moving this to the AVLNode class, as that makes FAR more sense.
+// Leaving this commented code for legacy/reference reasons.
 
 class AVLTree
 {
 private:
+    /* Fields */
     AVLNode *root;
     int size;
+
+    /* Methods */
     void rebalance(AVLNode *node);
     void rotateRight(AVLNode *node);
     void rotateLeft(AVLNode *node);
@@ -27,12 +31,22 @@ private:
     void updateHeight(AVLNode *node);
 
 public:
-    AVLTree(); // Constructor
+    /* Constructors and Deconstructors */
+    AVLTree();
+    ~AVLTree();
+
+    /* Methods */
     bool insert(int key, string value);
     bool find(int key, string &value);
+    void clear();
     vector<string> findRange(int lowkey, int highkey);
+
     int getHeight();
     int getSize();
+
     // friend ostream &printMe(ostream &os, AVLNode *node, int depth);
+
+    /* Overrides */
     friend ostream &operator<<(ostream &os, const AVLTree &me);
+    AVLTree &operator=(const AVLTree &s);
 };

@@ -16,6 +16,11 @@ AVLTree::AVLTree()
     size = 0;
 }
 
+AVLTree::~AVLTree()
+{
+    // Deconstructor override.  This method should delete all the nodes in this tree (freeing memory) and then reset its fields.
+}
+
 /* Methods */
 bool AVLTree::insert(int newKey, string newValue)
 {
@@ -452,4 +457,15 @@ ostream &operator<<(ostream &os, const AVLTree &me)
 
     // Return the ostream:
     return os;
+}
+
+void AVLTree::clear()
+{
+    // Deletes all the nodes of this tree, freeing their memory.  Then resets this tree's fields.
+}
+
+AVLTree &AVLTree::operator=(const AVLTree &s)
+{
+    // Clear this sequence, then make a deep copy of every node on the given tree.
+    // Note: this should preserve the tree's structure!  Lazy inserts could mnagle the layout.
 }
